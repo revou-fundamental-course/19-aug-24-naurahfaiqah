@@ -1,43 +1,54 @@
-const form = document.forms["form"];
-
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    validateform();
+document.forms["form"].addEventListener("submit", function (event) {
+    event.preventDefault();
+    ValidateForm();
 });
 
-function validateform() {
-    const name = form["input-name"].value;
-    const birth = form["input-birth"].value;
-    const gender = form["input-gender"].value;
-    const messaage = form["input-pesan"].value;
-    const date = new Date().toLocaleString();
-    const rpop = document.getElementById("errorpopup");
-    const spop = document.getElementById("successpopup");
+// untuk memvalidasi form //
+function ValidateForm() {
+    const name = document.forms["form"]["input-name"].value;
+    const birth = document.forms["form"]["input-birth"].value;
+    const gender = document.forms["form"]["gender"].value;
+    let message = document.forms["form"]["input-pesan"].value;
+    const errpopup = document.getElementById("errorpopup");
+    const sucpopup = document.getElementById("successpopup");
+    const getDay = new Date().toLocaleString();
 
-    if(name == "" || birth == "" || gender == "" || messaage == ""){    
-        showpopup(rpop);
+    if (name == "" || birth == "" || gender == "" || message == "") {
+        // untuk menset popup jika data yang diisi tidak sesuai //
+        showpopup(errpopup);
     } else {
-        showpopup(spop);
-        setsender(name, birth, gender, messaage, date);
+        // untuk menset popup jika data berhasil di submit //
+        showpopup(sucpopup);
+        SetSender(name, birth, gender, message, getDay);
+
+        // mengatur pada input, jika user selesai dalam mengisi form, maka input akan di reset //
+        setTimeout(function () {
+            document.forms["form"].reset();
+        }, 500);
     }
 }
 
-function setsender(name, birth, gender, messaage, time) {
+
+// untuk men set result dan nama di awal //
+function SetSender(name, birth, gender, message, time) {
     document.getElementById("name").innerHTML = name;
     document.getElementById("name-input").innerHTML = name;
     document.getElementById("birth-input").innerHTML = birth;
     document.getElementById("gender-input").innerHTML = gender;
-    document.getElementById("message-input").innerHTML = messaage;
+    document.getElementById("message-input").innerHTML = message;
     document.getElementById("time-input").innerHTML = time;
 }
 
-function showpopup(show){
-    show.classList.add("open-popup")
-    show.scrollIntoView({behavior: "smooth", block: "center"});
+// untuk men set popup berhasil atau tidak //
+function showpopup(ShowPopUp) {
+    ShowPopUp.classList.add("open-popup");
 
-    let close = show.querySelector(".close-button");
+    // mengatur pergerakan dari form ke popup menjadi smooth //
+    ShowPopUp.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    close.addEventListener("click", function() {
-        show.classList.remove("open-popup");
-    }, {once : true});
+    let closebtn = ShowPopUp.querySelector(".close-button");
+
+    closebtn.addEventListener("click", function () {
+        ShowPopUp.classList.remove("open-popup");
+    }, { once: true });
 }
