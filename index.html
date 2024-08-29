@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/Task/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <nav class="container">
         <div class="border-logo">
-            <img src="/WhatsApp Image 2024-08-27 at 22.29.34_4e025026.jpg" alt="">
+            <img src="image/WhatsApp Image 2024-08-29 at 20.46.37_a51a22e1.jpg">
         </div>
         <button class="option">Home</button>
         <button class="option">Our Profile</button>
@@ -50,20 +50,20 @@
         <h1 id="message">Message Us</h1>
         <div class="border-third">
             <div class="form">
-                <form action="" id="form">
+                <form method="get" id="form" name="form" onsubmit="validateform()">
                     <table>
                         <tr>
                             <td>Nama</td>
                             <td>:</td>
                             <td>
-                                <input type="text" id="input-name" placeholder="Nama Anda">
+                                <input type="text" id="input-name" placeholder="Nama Anda" name="input-name">
                             </td>
                         </tr>
                         <tr>
                             <td>Tanggal Lahir</td>
                             <td>:</td>
                             <td>
-                                <input type="date" id="input-birth">
+                                <input type="date" id="input-birth" name="input-birth">
                             </td>
                         </tr>
                         <tr>
@@ -85,7 +85,7 @@
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: center;">
-                                <button type="submit" id="submitbtn" class="submitbtn" style="width: 100%;">Kirim</button>
+                                <button type="submit" id="submitbtn" class="submitbtn" style="width: 100%;" onclick="validateform()">Kirim</button>
                             </td>
                         </tr>
                     </table>
@@ -103,9 +103,20 @@
                 </div>
             </div>
         </div>
+        <div class="errorpopup" id="errorpopup">
+            <h2>Error !</h2>
+            <p>The data must be filled in !</p>
+            <button type="button" class="close-button">Ok</button>
+        </div>
+        <div class="successpopup" id="successpopup">
+            <h2>Thank You !</h2>
+            <p>Your data has been succesfully submitted !</p>
+            <button type="button" id="close-button-suc" class="close-button">Ok</button>
+        </div>
     </main>
     <br><br><hr>
     <footer>by Naurah</footer>
+    <script src="js/yes.js"></script>
 </body>
 
 </html>
